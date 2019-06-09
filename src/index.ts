@@ -36,6 +36,10 @@ export default class Series {
       length: options.length || (events.length > 1 ? getLength(events[0]): 0)
     };
   }
+  // todo: make these immutable
+  getOptions() {
+    return this._options;
+  }
   getEvents() {
     return this._events;
   }

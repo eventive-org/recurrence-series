@@ -20,6 +20,15 @@ describe('constructor', () => {
     ]
     const series = new Series(events)
     expect(series.getEvents()).toEqual(events)
+  });
+  it('constructor with options', () => {
+    const options = {
+      maxRepeats: 100,
+      length: 20
+    }
+    const series = new Series([], options);
+    expect(series.getEvents()).toEqual([]);
+    expect(series.getOptions()).toEqual(options);
   })
 })
 describe('setLength', () => {
