@@ -2,8 +2,11 @@
 // import "core-js/fn/array.find"
 // ...
 
-import * as moment_ from "moment";
-const moment = moment_;
+// Hack from https://github.com/palantir/blueprint/issues/959#issuecomment-335965129
+let moment = require("moment");
+if ("default" in moment) {
+  moment = moment["default"];
+}
 import { RRule, rrulestr } from "rrule";
 import { Settings } from "luxon";
 
