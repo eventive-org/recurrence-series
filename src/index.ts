@@ -37,21 +37,20 @@ export default class Series {
       length: options.length || (events.length > 1 ? getLength(events[0]) : 0)
     };
   }
-  // todo: make these immutable
   getOptions() {
-    return this._options;
+    return { ...this._options };
   }
   getEvents() {
-    return this._events;
+    return this._events.map(e => ({ ...e }));
   }
   getCreated() {
-    return this._created;
+    return this._created.map(e => ({ ...e }));
   }
   getDeleted() {
-    return this._deleted;
+    return this._deleted.map(e => ({ ...e }));
   }
   getUpdated() {
-    return this._updated;
+    return this._updated.map(e => ({ ...e }));
   }
   setRecurrence(rruleString: string) {
     this._updated = [];
