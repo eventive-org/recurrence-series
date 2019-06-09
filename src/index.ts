@@ -2,7 +2,8 @@
 // import "core-js/fn/array.find"
 // ...
 
-import * as moment from "moment";
+import * as moment_ from "moment";
+const moment = moment_;
 import { RRule, rrulestr } from "rrule";
 import { Settings } from "luxon";
 

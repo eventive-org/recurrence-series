@@ -1,5 +1,6 @@
+import * as moment_ from "moment";
+const moment = moment_;
 import Series from "../src/index";
-import * as moment from "moment";
 import { RRule } from "rrule";
 
 describe('constructor', () => {
