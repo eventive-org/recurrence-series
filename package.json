@@ -118,6 +118,8 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
+    "@types/luxon": "^1.15.1",
+    "luxon": "^1.16.0",
     "moment": "^2.24.0",
     "rrule": "^2.6.2"
   }
