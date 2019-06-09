@@ -1,1 +1,51 @@
 # recurring-event-populator
+
+Uses logic from [rrule](https://github.com/jakubroztocil/rrule) to handle logic for updating recurring events.
+
+You have a bunch of events generated from a particular recurrence. But then you change the recurrence -- what do you do? recurring-event-populator handles this logic for you.
+
+Sample usage:
+
+```js
+import Series from "recurring-event-populator";
+import moment from "moment";
+import { RRule } from "rrule";
+
+// Initialization with a list of events. Times are in UTC.
+const events = [
+    {
+        start_time: moment("2019-05-01T03:00:00.000Z"),
+        end_time: moment("2019-05-01T03:00:00.000Z")
+    },
+    {
+        start_time: moment("2019-05-01T03:00:00.000Z"),
+        end_time: moment("2019-05-01T03:00:00.000Z")
+    }
+];
+const series = new Series(events);
+
+// Set recurrence for event (as an RRule string). If using timezones, tzid should be specified, and dtstart and until should be in the local timezone (in this case, America/Los_Angeles).
+const rrule = new RRule({
+    freq: RRule.DAILY,
+    interval: 1,
+    dtstart: moment("2019-05-01T03:00:00.000Z").toDate(),
+    until: moment("2019-05-03T03:00:00.000Z").toDate(),
+    tzid: "America/Los_Angeles"
+});
+series.setRecurrence(rrule.toString(), {type: series.ALL});
+// Get all current events in the series:
+series.getEvents()
+// Get all events created by the previous operation:
+series.getCreatedEvents()
+// Get all events deleted by the previous operation:
+series.getDeletedEvents()
+
+// Set length of all events to a particular duration.
+series.setLength(moment.duration(2, 'hours').asMilliseconds());
+
+// Split the series into two (includes events at the current time).
+let [pastSeries, futureSeries] = series.split();
+// Set all future events' length to 1 hour.
+futureEvents.setLength(moment.duration(2, 'hours').asMilliseconds());
+
+```
