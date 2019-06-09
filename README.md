@@ -43,9 +43,9 @@ series.getDeletedEvents()
 // Set length of all events to a particular duration.
 series.setLength(moment.duration(2, 'hours').asMilliseconds());
 
-// Split the series into two (includes events at the current time).
-let [pastSeries, futureSeries] = series.split();
+// Split the series into two (includes events that start at the current time).
+let [pastSeries, futureSeries] = series.split(moment("2019-05-02T03:00:00.000Z").toDate());
 // Set all future events' length to 1 hour.
-futureEvents.setLength(moment.duration(2, 'hours').asMilliseconds());
+futureSeries.setLength(moment.duration(2, 'hours').asMilliseconds());
 
 ```
