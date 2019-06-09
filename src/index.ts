@@ -25,7 +25,7 @@ export default class Series {
   private _updated: IEvent[];
   private _deleted: IEvent[];
   private _options: IOptions;
-  
+
   constructor(events: IEvent[] = [], options: any = {}) {
     this._events = events;
     this._created = [];
@@ -33,7 +33,7 @@ export default class Series {
     this._deleted = [];
     this._options = {
       maxRepeats: options.maxRepeats || 100,
-      length: options.length || (events.length > 1 ? getLength(events[0]): 0)
+      length: options.length || (events.length > 1 ? getLength(events[0]) : 0)
     };
   }
   // todo: make these immutable
@@ -92,8 +92,8 @@ export default class Series {
         }
         // ...or duplicate the event if a new event has to be created.
         else {
-          kept.push({start, end});
-          created.push({start, end});
+          kept.push({ start, end });
+          created.push({ start, end });
         }
       }
     }
@@ -114,5 +114,12 @@ export default class Series {
       }
     }
     this._updated = updated;
+    this._created = [];
+    this._deleted = [];
+  }
+  split(date: Date) {
+    const past = new Series(this._events.filter(e => e.start.getTime() < date.getTime()), this._options);
+    const future = new Series(this._events.filter(e => e.start.getTime() >= date.getTime()), this._options);
+    return { past, future };
   }
 }

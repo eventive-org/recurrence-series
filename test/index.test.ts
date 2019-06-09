@@ -159,3 +159,37 @@ describe('setRecurrence', () => {
     expect(series.getDeleted()[0]).toEqual(events[1]);
   });
 });
+describe('split', () => {
+  it('split in two', () => {
+    const events = [
+      {
+        start: moment('2019-05-01T03:00:00.000Z').toDate(),
+        end: moment('2019-05-01T04:00:00.000Z').toDate()
+      },
+      {
+        start: moment('2019-05-02T03:00:00.000Z').toDate(),
+        end: moment('2019-05-02T04:00:00.000Z').toDate()
+      },
+      {
+        start: moment('2019-05-03T03:00:00.000Z').toDate(),
+        end: moment('2019-05-03T04:00:00.000Z').toDate()
+      }
+    ];
+    const rrule = new RRule({
+      freq: RRule.DAILY,
+      interval: 1,
+      dtstart: moment("2019-05-01T03:00:00.000Z").toDate(),
+      until: moment("2019-05-02T03:00:00.000Z").toDate()
+    });
+    const series = new Series(events);
+    const { past, future } = series.split(moment("2019-05-02T03:00:00.000Z").toDate());
+    expect(past.getEvents()).toEqual([events[0]]);
+    expect(past.getCreated().length).toEqual(0);
+    expect(past.getUpdated().length).toEqual(0);
+    expect(past.getDeleted().length).toEqual(0);
+    expect(future.getEvents()).toEqual([events[1], events[2]]);
+    expect(future.getCreated().length).toEqual(0);
+    expect(future.getUpdated().length).toEqual(0);
+    expect(future.getDeleted().length).toEqual(0);
+  });
+})

@@ -47,9 +47,9 @@ series.getUpdated()
 
 
 // Split the series into two (includes events that start at the current time).
-let [pastSeries, futureSeries] = series.split(moment("2019-05-02T03:00:00.000Z").toDate());
+const {past, future} = series.split(moment("2019-05-02T03:00:00.000Z").toDate());
 // Set all future events' length to 1 hour.
-futureSeries.setLength(moment.duration(2, 'hours').asMilliseconds());
+future.setLength(moment.duration(2, 'hours').asMilliseconds());
 
 ```
 
