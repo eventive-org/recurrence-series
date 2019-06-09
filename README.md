@@ -32,7 +32,7 @@ const rrule = new RRule({
     until: moment("2019-05-03T03:00:00.000Z").toDate(),
     tzid: "America/Los_Angeles"
 });
-series.setRecurrence(rrule.toString(), {type: series.ALL});
+series.setRecurrence(rrule.toString());
 // Get all current events in the series:
 series.getEvents()
 // Get all events created by the previous operation:
@@ -40,8 +40,11 @@ series.getCreatedEvents()
 // Get all events deleted by the previous operation:
 series.getDeletedEvents()
 
-// Set length of all events to a particular duration.
+// Set length of all events to a particular duration, keeping the start times constant (and only varying the end time).
 series.setLength(moment.duration(2, 'hours').asMilliseconds());
+// Get all events updated by the previous operation:
+series.getUpdatedEvents()
+
 
 // Split the series into two (includes events that start at the current time).
 let [pastSeries, futureSeries] = series.split(moment("2019-05-02T03:00:00.000Z").toDate());
