@@ -109,7 +109,7 @@
     "semantic-release": "^15.13.16",
     "shelljs": "^0.8.3",
     "travis-deploy-once": "^5.0.9",
-    "ts-jest": "^23.10.2",
+    "ts-jest": "^24.0.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
@@ -120,6 +120,7 @@
   "dependencies": {
     "@types/luxon": "^1.15.1",
     "luxon": "^1.16.0",
+    "mockdate": "^2.0.2",
     "moment": "^2.24.0",
     "rrule": "^2.6.2"
   }
