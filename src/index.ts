@@ -63,7 +63,7 @@ export default class Series {
     // todo: when date start is in the past, need to get only events from now -> future.
 
     let repeats = rrule.all((date, i) => i < this._options.maxRepeats);
-    let deleted = [];
+    let deleted: IEvent[] = [];
     let kept = [];
     let updated = [];
     let created = [];
@@ -79,7 +79,7 @@ export default class Series {
         deleted.push(event);
       }
     }
-    this._events = this._events.filter(e => this._deleted.indexOf(e) === -1);
+    this._events = this._events.filter(e => deleted.indexOf(e) === -1);
     if (repeats.length > 0) {
       for (let repeat of repeats) {
         let start = moment(repeat).toDate();
