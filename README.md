@@ -1,13 +1,13 @@
-# event-series
+# events-series
 
 Uses logic from [rrule](https://github.com/jakubroztocil/rrule) to handle logic for updating recurring events.
 
-You have a bunch of events generated from a particular recurrence. But then you change the recurrence -- what do you do? event-series handles this logic for you.
+You have a bunch of events generated from a particular recurrence. But then you change the recurrence -- what do you do? events-series handles this logic for you.
 
 ## Sample usage
 
 ```js
-import Series from "event-series";
+import Series from "events-series";
 import moment from "moment";
 import { RRule } from "rrule";
 
