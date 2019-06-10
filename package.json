@@ -14,7 +14,7 @@
     "type": "git",
     "url": ""
   },
-  "license": "",
+  "license": "MIT",
   "engines": {
     "node": ">=6.0.0"
   },
