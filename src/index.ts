@@ -79,7 +79,6 @@ export default class Series {
         deleted.push(event);
       }
     }
-    this._events = this._events.filter(e => deleted.indexOf(e) === -1);
     if (repeats.length > 0) {
       for (let repeat of repeats) {
         let start = moment(repeat).toDate();
