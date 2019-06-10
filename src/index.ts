@@ -7,10 +7,11 @@ let moment = require("moment");
 if ("default" in moment) {
   moment = moment["default"];
 }
-import { RRule, rrulestr } from "rrule";
 import { Settings } from "luxon";
+import { rrulestr } from "rrule";
 
-Settings.defaultZoneName = "utc";
+(Settings || {}).defaultZoneName = "utc";
+
 interface IEvent {
   start: Date,
   end: Date

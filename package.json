@@ -82,8 +82,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",
     "@types/jest": "^23.3.2",
@@ -122,9 +120,11 @@
   },
   "dependencies": {
     "@types/luxon": "^1.15.1",
-    "luxon": "^1.16.0",
     "mockdate": "^2.0.2",
     "moment": "^2.24.0",
     "rrule": "^2.6.2"
+  },
+  "optionalDependencies": {
+    "luxon": "^1.16.0"
   }
 }
