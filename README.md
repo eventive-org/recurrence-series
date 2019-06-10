@@ -56,6 +56,7 @@ future.setLength(moment.duration(2, 'hours').asMilliseconds());
 ## Options config
 ```
 const options = {
-    maxRepeats: 100,
+    maxRepeats: 100, // Maximum number of repeats generated when applying an rrule to a series.
+    length: 10000, // Length in milliseconds of new dates to be added. If not specified, defaults to the length of the first event, or 0.
 }
 ```

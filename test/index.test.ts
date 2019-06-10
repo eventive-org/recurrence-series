@@ -170,7 +170,7 @@ describe('setRecurrence', () => {
     expect(series.getEvents()[0]).toEqual(events[0]);
     expect(series.getDeleted()[0]).toEqual(events[1]);
   });
-  it.only('keeps same events with time zones', () => {
+  it('keeps same events with time zones', () => {
     const events = [
       {
         start: moment('2019-05-01T03:00:00.000Z').toDate(),
