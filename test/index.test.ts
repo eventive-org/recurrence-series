@@ -4,6 +4,15 @@ if ("default" in moment) {
 }
 import Series from "../src/index";
 import { RRule } from "rrule";
+const MockDate = require("mockdate");
+
+beforeAll(() => {
+  MockDate.set(moment('2019-05-01T03:00:00.000Z').toDate());
+});
+
+afterAll(() => {
+  MockDate.reset();
+});
 
 describe('constructor', () => {
   it('empty constructor', () => {
@@ -161,6 +170,31 @@ describe('setRecurrence', () => {
     expect(series.getEvents()[0]).toEqual(events[0]);
     expect(series.getDeleted()[0]).toEqual(events[1]);
   });
+  it.only('keeps same events with time zones', () => {
+    const events = [
+      {
+        start: moment('2019-05-01T03:00:00.000Z').toDate(),
+        end: moment('2019-05-01T04:00:00.000Z').toDate()
+      },
+      {
+        start: moment('2019-05-02T03:00:00.000Z').toDate(),
+        end: moment('2019-05-02T04:00:00.000Z').toDate()
+      }
+    ];
+    const rrule = new RRule({
+      freq: RRule.DAILY,
+      interval: 1,
+      dtstart: moment("2019-04-30T20:00:00.000Z").toDate(),
+      until: moment("2019-05-01T20:00:00.000Z").toDate(),
+      tzid: "America/Los_Angeles"
+    });
+    const series = new Series(events);
+    series.setRecurrence(rrule.toString());
+    expect(series.getEvents()).toEqual(events);
+    expect(series.getCreated()).toEqual([]);
+    expect(series.getUpdated()).toEqual([]);
+    expect(series.getDeleted()).toEqual([]);
+  });
 });
 describe('split', () => {
   it('split in two', () => {
@@ -195,4 +229,4 @@ describe('split', () => {
     expect(future.getUpdated().length).toEqual(0);
     expect(future.getDeleted().length).toEqual(0);
   });
-})
+});
