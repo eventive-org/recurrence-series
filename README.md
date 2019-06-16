@@ -60,3 +60,31 @@ const options = {
     length: 10000, // Length in milliseconds of new dates to be added. If not specified, defaults to the length of the first event, or 0.
 }
 ```
+
+## Set multiple rrules and durations
+You can set multiple rrules and durations at once with `Series.setRecurrencesAndDurations`:
+
+```
+const rrule = new RRule({
+    freq: RRule.DAILY,
+    interval: 1,
+    dtstart: moment("2019-05-01T03:00:00.000Z").toDate(),
+    until: moment("2019-05-01T05:00:00.000Z").toDate()
+});
+const rrule2 = new RRule({
+    freq: RRule.DAILY,
+    interval: 1,
+    dtstart: moment("2019-05-02T03:00:00.000Z").toDate(),
+    until: moment("2019-05-03T03:00:00.000Z").toDate()
+});
+series.setRecurrencesAndDurations([
+    {
+    rrule: rrule.toString(),
+    duration: 1000
+    },
+    {
+    rrule: rrule2.toString(),
+    duration: 5000
+    },
+]);
+````
