@@ -125,6 +125,6 @@
     "rrule": "^2.6.2"
   },
   "optionalDependencies": {
-    "luxon": "^1.16.0"
+    "luxon": "^2.5.2"
   }
 }
